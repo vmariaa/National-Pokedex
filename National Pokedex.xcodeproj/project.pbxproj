@@ -51,6 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E432CD3D286F87B0008AB546 /* Serivce */ = {
+			isa = PBXGroup;
+			children = (
+				E441131828618E4400743A9B /* PokemonService.swift */,
+			);
+			path = Serivce;
+			sourceTree = "<group>";
+		};
+		E432CD3E286F8819008AB546 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E441131E2861AF7200743A9B /* ArrayExtension.swift */,
+				E4618B04286C679300B56357 /* HelperClass.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		E44112F32861881B00743A9B = {
 			isa = PBXGroup;
 			children = (
@@ -72,43 +89,42 @@
 			children = (
 				E44112FF2861881B00743A9B /* AppDelegate.swift */,
 				E44113012861881B00743A9B /* SceneDelegate.swift */,
-				E47C80B5286D0C590015BBD9 /* Views */,
-				E47C80B4286D0C2A0015BBD9 /* Controllers */,
-				E47C80B6286D0D140015BBD9 /* Models */,
-				E44113052861881B00743A9B /* Main.storyboard */,
+				E47C80B5286D0C590015BBD9 /* View */,
+				E47C80B6286D0D140015BBD9 /* Model */,
+				E47C80B4286D0C2A0015BBD9 /* Controller */,
+				E432CD3D286F87B0008AB546 /* Serivce */,
+				E432CD3E286F8819008AB546 /* Helper */,
 				E44113082861881E00743A9B /* Assets.xcassets */,
+				E44113052861881B00743A9B /* Main.storyboard */,
 				E441130A2861881E00743A9B /* LaunchScreen.storyboard */,
 				E441130D2861881E00743A9B /* Info.plist */,
 			);
 			path = "National Pokedex";
 			sourceTree = "<group>";
 		};
-		E47C80B4286D0C2A0015BBD9 /* Controllers */ = {
+		E47C80B4286D0C2A0015BBD9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				E44113032861881B00743A9B /* PokedexViewController.swift */,
 				E441131C2861A90900743A9B /* PreviewViewController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		E47C80B5286D0C590015BBD9 /* Views */ = {
+		E47C80B5286D0C590015BBD9 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				E441131628618E0F00743A9B /* PokeCell.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		E47C80B6286D0D140015BBD9 /* Models */ = {
+		E47C80B6286D0D140015BBD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E441131828618E4400743A9B /* PokemonService.swift */,
 				E441131A28618E6100743A9B /* PokemonModel.swift */,
-				E4618B04286C679300B56357 /* HelperClass.swift */,
-				E441131E2861AF7200743A9B /* ArrayExtension.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -16,6 +16,7 @@ class Helper {
     static var buttonWasClicked = false
     static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveUrl = DocumentsDirectory.appendingPathComponent("favourite").appendingPathExtension("plist")
+    
     static func loadFavourite() -> [Int]? {
         guard let favourite = try? Data(contentsOf: ArchiveUrl) else {
             return nil
@@ -23,6 +24,7 @@ class Helper {
         let propertyListDecoder = PropertyListDecoder()
         return try? propertyListDecoder.decode(Array<Int>.self, from: favourite)
     }
+    
     static func saveFavourite(_ favourites: [Int]) {
             let propertyListEncoder = PropertyListEncoder()
         guard let codedfavourite = try? propertyListEncoder.encode(favourites) else {

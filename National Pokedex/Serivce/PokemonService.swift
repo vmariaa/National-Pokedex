@@ -26,7 +26,6 @@ func getPokemon(completion: @escaping([Pokemon], Pokemon) -> ()) {
                     }
                     var newPoke = Pokemon(id: pokemon.id, name: pokemon.name, height: pokemon.height, baseExperience: pokemon.baseExperience, weight: pokemon.weight, type: types, stats: stats, imageURL: URL(string: (pokemon.sprites?.frontDefault)!), image: nil)
                     pokeData.append(newPoke)
-                  
                     pokeData.sort { newPoke1, newPoke2 in
                         return newPoke1.id! < newPoke2.id!
                     }

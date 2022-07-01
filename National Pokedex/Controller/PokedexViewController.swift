@@ -9,7 +9,6 @@ import UIKit
 
 class PokedexViewController: UIViewController {
     
-    
     @IBOutlet weak var pokedexTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var favouritesButton: UIBarButtonItem?
@@ -18,11 +17,10 @@ class PokedexViewController: UIViewController {
         super.viewWillAppear(true)
         pokedexTableView.reloadData()
     }
-    
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backBarButtonItem?.setTitleTextAttributes([.font: UIFont(name: "Kohinoor Bangla", size: 17)!], for: .normal)
+        
         pokedexTableView.delegate = self
         pokedexTableView.dataSource = self
         searchBar.delegate = self
@@ -31,7 +29,6 @@ class PokedexViewController: UIViewController {
         favouritesButton = UIBarButtonItem()
         addBarButton()
         
- 
         getPokemon { [weak self] pokemon, newPoke in
             Helper.filteredData = pokemon
                 getImage(url: newPoke.imageURL!) { [weak self] image in
@@ -63,7 +60,6 @@ class PokedexViewController: UIViewController {
         initialViewSetup()
     }
 
-    
     func addBarButton() {
         favouritesButton = UIBarButtonItem(title: "Favourites", style: .plain, target: self, action: #selector(showFavourites))
         favouritesButton?.tintColor = UIColor(named: "font")!
@@ -91,7 +87,6 @@ class PokedexViewController: UIViewController {
         Helper.favouriteId = data
     }
     
-    
     func initialViewSetup() {
         pokedexTableView.separatorStyle = .none
 
@@ -105,6 +100,7 @@ class PokedexViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor(named: "font")!
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.setTitleTextAttributes([.font: UIFont(name: "Kohinoor Bangla", size: 17)!], for: .normal)
+        
         view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient-1.png")!)
     }
     
@@ -172,11 +168,9 @@ extension PokedexViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         }
-        
         DispatchQueue.main.async {
             cell.pokemonImage.image = Helper.filteredData[indexPath.row].image
         }
-        
         return cell
     }
     
@@ -190,7 +184,6 @@ extension PokedexViewController: UITableViewDelegate, UITableViewDataSource {
         vc.selectedPokemon = Helper.filteredData[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
-
  }
 
 extension PokedexViewController: UISearchBarDelegate {
@@ -206,7 +199,6 @@ extension PokedexViewController: UISearchBarDelegate {
                 Helper.filteredData = Helper.pokemonFetched
             }
         } else {
-           // filteredData = []
             switch Helper.buttonWasClicked{
             case true:
                 for pokemon in Helper.favourite {
@@ -223,12 +215,10 @@ extension PokedexViewController: UISearchBarDelegate {
                     }
                 }
             }
-            
         }
         self.pokedexTableView.reloadData()
     }
 
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }

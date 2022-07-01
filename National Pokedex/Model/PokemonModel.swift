@@ -20,7 +20,6 @@ class Pokemon {
     let imageURL: URL?
     var image: UIImage?
     var favourited: Bool = false
-    
 
     init(id: Int?, name: String?, height: Int?, baseExperience: Int?, weight: Int?, type: [String?], stats: [Int?], imageURL: URL?, image: UIImage?) {
         self.id = id

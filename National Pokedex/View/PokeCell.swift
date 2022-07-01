@@ -44,6 +44,5 @@ class PokeCell: UITableViewCell {
         
         starButton.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 15).isActive = true
         starButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15).isActive = true
-        
     }
 }

@@ -18,7 +18,6 @@ class PreviewViewController: UIViewController {
     @IBOutlet weak var weightNameLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var baseExpLabel: UILabel!
-    @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var statsLabel: UILabel!
     @IBOutlet weak var hpBar: UIProgressView!
@@ -71,6 +70,7 @@ class PreviewViewController: UIViewController {
         guard let selectedPokemon = selectedPokemon else {
             return
         }
+        
         for pokemon in Helper.favouriteId {
             if selectedPokemon.id == pokemon {
                 starButton.setImage(UIImage(systemName: "star.fill")?.withTintColor(UIColor(named: "font")!), for: .normal)
@@ -98,7 +98,6 @@ class PreviewViewController: UIViewController {
         }
     }
     
-
     func setImageView() {
         pokemonImageLarge.translatesAutoresizingMaskIntoConstraints = false
        
@@ -163,7 +162,6 @@ class PreviewViewController: UIViewController {
         speedLabel.text = "Speed: \(String((selectedPokemon?.stats[5])!))"
         speedLabel.textColor = UIColor(named: "font")!
         speedLabel.font = UIFont(name: "Kohinoor Bangla Semibold", size: 15)
-        
     }
     
     func setLabelConstraints() {
@@ -303,7 +301,6 @@ class PreviewViewController: UIViewController {
         
         speedLabel.topAnchor.constraint(equalTo: specialDefenseLabel.bottomAnchor, constant: 10).isActive = true
         speedLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        
     }
     
     func setBackgroundView() {
@@ -353,6 +350,7 @@ class PreviewViewController: UIViewController {
             return newPoke1.id! < newPoke2.id!
         }
         
-    }}
+    }
+}
 
 
