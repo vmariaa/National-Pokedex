@@ -7,8 +7,8 @@
 
 import Foundation
 
-
 class Helper {
+    static let loadedNotificationKey = "co.mariam.loaded"
     static var pokemonFetched = [Pokemon]()
     static var filteredData: [Pokemon] = []
     static var favourite: [Pokemon] = []

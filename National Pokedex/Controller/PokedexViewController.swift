@@ -44,6 +44,8 @@ class PokedexViewController: UIViewController {
                         self?.favouritesButton?.isEnabled = false
                     } else {
                         Helper.pokemonFetched = Helper.filteredData
+                        let name = Notification.Name(rawValue: Helper.loadedNotificationKey)
+                        NotificationCenter.default.post(name: name, object: nil)
                         self?.checkForFavourites()
                         self?.favouritesButton?.isEnabled = true
                         self?.searchBar.placeholder = ""
@@ -175,9 +177,6 @@ extension PokedexViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if Helper.pokemonFetched.count != 151 {
-            return
-        }
         let vc = storyboard?.instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
         tableView.deselectRow(at: indexPath, animated: true)
         vc.selectedImage = Helper.filteredData[indexPath.row].image

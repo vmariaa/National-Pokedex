@@ -46,6 +46,7 @@ class PreviewViewController: UIViewController {
     
     var addToFavsButton: UIBarButtonItem?
     
+    let name = Notification.Name(rawValue: Helper.loadedNotificationKey)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +60,11 @@ class PreviewViewController: UIViewController {
         setBars()
         setBackgroundView()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: name, object: nil)
+        
         navigationItem.title = selectedPokemon?.name?.capitalized
         view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient-1.png")!)
-       
-        pokemonImageLarge?.image = selectedImage
+            
         addToFavsButton = UIBarButtonItem()
         setRightBarButtonItem()
         configRightBarButtonItem()
@@ -106,6 +108,16 @@ class PreviewViewController: UIViewController {
         pokemonImageLarge.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
         pokemonImageLarge.heightAnchor.constraint(equalToConstant: 200).isActive = true
         pokemonImageLarge.contentMode = .scaleAspectFill
+        
+        if selectedImage == nil {
+            getImage(url: (selectedPokemon!.imageURL!)) { [weak self] image in
+                self?.selectedImage = image
+                DispatchQueue.main.async {
+                    self?.pokemonImageLarge.image = self?.selectedImage  }
+            }
+        } else {
+        pokemonImageLarge?.image = selectedImage
+        }
     }
     
     func setLabelData() {
@@ -318,6 +330,15 @@ class PreviewViewController: UIViewController {
         backgroundView.layer.shadowOpacity = 0.3
     }
     
+    @objc func enableButton(notification: NSNotification) {
+        addToFavsButton?.isEnabled = true
+        if selectedPokemon?.favourited == true {
+            addToFavsButton?.title = "Remove from favourites"
+        } else {
+            addToFavsButton?.title = "Add to favourites"
+        }
+    }
+    
     @objc func addToFavs() {
         guard let selectedPokemon = selectedPokemon else {
             return
@@ -346,10 +367,13 @@ class PreviewViewController: UIViewController {
         Helper.favouriteId.append((selectedPokemon.id)!)
         Helper.saveFavourite(Helper.favouriteId)
         selectedPokemon.favourited = true
+        print("Favourites: \(Helper.favourite.count), Favourite id: \(Helper.favouriteId.count)")
         Helper.favourite.sort { newPoke1, newPoke2 in
             return newPoke1.id! < newPoke2.id!
         }
-        
+        if Helper.buttonWasClicked == true {
+            Helper.filteredData = Helper.favourite
+        }
     }
 }
 
